@@ -1,0 +1,172 @@
+{
+  "prefix": {
+    "enabled": true,
+    "symbol": "-",
+    "blockedChannels": [],
+    "wrongChannelAction": "ignore"
+  },
+
+  "slash": {
+    "enabled": true,
+    "guildId": ""
+  },
+
+  "roles": {
+    "leader": "1184945568619970591",
+    "assistant": "1388255371239489658"
+  },
+
+  "commands": {
+    "clanexit": {
+      "name": "clanexit",
+      "description": "Entfernt dir deine Clan-Rollen selbst",
+      "action": "exit",
+      "slash": true,
+      "prefix": true,
+      "prefixChannels": [],
+      "allowedRoles": [],
+      "noPermission": "general.noPermission",
+      "needsUser": false,
+      "auditReason": "clanexit von {executor}"
+    },
+    "clantag": {
+      "name": "clantag",
+      "description": "Gibt einem Mitglied deine Clan-Rolle oder entzieht sie",
+      "action": "toggle",
+      "roleSource": "executorClanRole",
+      "slash": true,
+      "prefix": true,
+      "prefixChannels": [],
+      "allowedRoles": ["leader", "assistant"],
+      "noPermission": "general.noPermission",
+      "needsUser": true,
+      "optionName": "user",
+      "optionDescription": "Das Mitglied",
+      "auditReason": "clantag von {executor}"
+    },
+    "clanhelper": {
+      "name": "clanhelper",
+      "description": "Gibt einem Mitglied die Clan-Assistenten-Rolle oder entzieht sie",
+      "action": "toggle",
+      "roleSource": "assistant",
+      "slash": true,
+      "prefix": true,
+      "prefixChannels": [],
+      "allowedRoles": ["leader"],
+      "noPermission": "general.noLeaderPermission",
+      "needsUser": true,
+      "optionName": "user",
+      "optionDescription": "Das Mitglied",
+      "auditReason": "clanhelper von {executor}"
+    }
+  },
+
+  "responses": {
+    "slash": {
+      "type": "embed",
+      "ephemeral": true
+    },
+    "prefix": {
+      "type": "text",
+      "replyToMessage": true,
+      "pingUser": false,
+      "deleteCommand": true,
+      "deleteReply": true,
+      "deleteAfterSeconds": 10
+    }
+  },
+
+  "colors": {
+    "success": "#57F287",
+    "error": "#ED4245",
+    "info": "#5865F2"
+  },
+
+  "embedTitles": {
+    "success": "",
+    "error": "",
+    "info": ""
+  },
+
+  "icons": {
+    "success": "✅ ",
+    "error": "❌ ",
+    "info": "ℹ️"
+  },
+
+  "usage": {
+    "prefix": "{prefix}{name} @Mitglied",
+    "slash": "/{name} @Mitglied"
+  },
+
+  "messages": {
+    "general": {
+      "noPermission": "Dafür hast du keine Berechtigung. Diesen Befehl können nur Clan-Anführer und Clan-Assistenten nutzen.",
+      "noLeaderPermission": "Diesen Befehl können nur Clan-Anführer nutzen.",
+      "noOwnClanRole": "Du hast keine Clan-Rolle. Ohne diese kann ich nicht bestimmen, welche Rolle vergeben werden soll.",
+      "multipleOwnClanRoles": "Du hast mehrere Clan-Rollen. Bitte behalte nur eine, damit eindeutig ist, welche vergeben werden soll.",
+      "missingTarget": "Bitte gib ein Mitglied an, z. B. `{usage}`. Das Mitglied muss auf diesem Server sein.",
+      "botTarget": "Bots können keine Clan-Rollen erhalten.",
+      "roleMissing": "Die Rolle wurde auf diesem Server nicht gefunden. Bitte prüfe die ID in der config.json.",
+      "wrongChannel": "Diesen Befehl kannst du hier nicht nutzen. Erlaubt: {channels}",
+      "error": "Es ist ein Fehler aufgetreten. Bitte versuche es später erneut."
+    },
+    "clanexit": {
+      "done": "Du wurdest aus folgenden Clan-Rollen entfernt: {roles}",
+      "none": "Du hast keine Clan-Rolle, die entfernt werden kann."
+    },
+    "clantag": {
+      "added": "{role} wurde {user} zugewiesen.",
+      "removed": "{role} wurde {user} entzogen."
+    },
+    "clanhelper": {
+      "added": "Die Clan-Assistenten-Rolle {role} wurde {user} gegeben.",
+      "removed": "Die Clan-Assistenten-Rolle {role} wurde {user} entzogen."
+    },
+    "logs": {
+      "clanexit": {
+        "done": "{executor} hat sich aus folgenden Clan-Rollen entfernt: {roles}"
+      },
+      "clantag": {
+        "added": "{executor} hat {target} die Clan-Rolle {role} gegeben.",
+        "removed": "{executor} hat {target} die Clan-Rolle {role} entzogen."
+      },
+      "clanhelper": {
+        "added": "{executor} hat {target} die Clan-Assistenten-Rolle {role} gegeben.",
+        "removed": "{executor} hat {target} die Clan-Assistenten-Rolle {role} entzogen."
+      },
+      "error": "Fehler bei {command}: {error}"
+    }
+  },
+
+  "console": {
+    "noToken": "Fehler: DISCORD_TOKEN fehlt in der .env-Datei.",
+    "ready": "Eingeloggt als {tag}",
+    "slashGuild": "Slash-Commands auf Server \"{guild}\" registriert.",
+    "slashGlobal": "Slash-Commands global registriert (kann bis zu einer Stunde dauern).",
+    "slashFailed": "Slash-Commands konnten nicht registriert werden: {error}",
+    "unknownLogMode": "Unbekannter Log-Modus \"{mode}\" bei \"{action}\".",
+    "noLogChannel": "Log-Kanal gewünscht bei \"{action}\", aber logs.channelId ist leer.",
+    "logChannelFailed": "Log-Kanal konnte nicht beschrieben werden: {error}",
+    "unhandled": "Unbehandelter Fehler:"
+  },
+
+  "logs": {
+    "channelId": "",
+    "default": "console",
+    "modes": {
+      "disable": [],
+      "console": ["console"],
+      "channel": ["channel"],
+      "all": ["console", "channel"]
+    },
+    "actions": {
+      "clanexit.done": "console",
+      "clantag.added": "console",
+      "clantag.removed": "console",
+      "clanhelper.added": "console",
+      "clanhelper.removed": "console",
+      "error": "console"
+    }
+  }
+}
